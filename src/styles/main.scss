@@ -1,0 +1,13 @@
+@use 'variables' as *;
+
+body {
+  font-family: "Rubik", serif;
+  background: #f8f9fa;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+}

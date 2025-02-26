@@ -1,0 +1,163 @@
+@use '@/styles/_index' as *;
+@use "sass:color";
+
+.rf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $size-2xs;
+  padding: $size-2xs $size-xs;
+  border: none;
+  border-radius: $border-radius-m;
+  font-size: $font-size-m;
+  font-family: $base-font;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-normal;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  // Variants
+  &-primary, &:not([class*="rf-btn-"]) {
+    background-color: $primary-color;
+    color: white;
+    &:hover:not(:disabled) { 
+      background-color: $primary-hover;
+    }
+    &:active:not(:disabled) {
+      background-color: $primary-active;
+    }
+
+    // Primary Acts
+    &.acts-success {
+      background-color: $success-color;
+      &:hover:not(:disabled) { 
+        background-color: color.adjust($success-color, $lightness: -5%);
+      }
+    }
+
+    &.acts-danger {
+      background-color: $danger-color;
+      &:hover:not(:disabled) { 
+        background-color: color.adjust($danger-color, $lightness: -5%);
+      }
+    }
+  }
+
+  &-secondary {
+    background-color: transparent;
+    border: 1px solid $primary-color;
+    color: $primary-color;
+    &:hover:not(:disabled) { 
+      background-color: rgba($primary-color, 0.1);
+      border-color: $primary-hover;
+      color: $primary-hover;
+    }
+    &:active:not(:disabled) {
+      background-color: rgba($primary-color, 0.2);
+      border-color: $primary-active;
+      color: $primary-active;
+    }
+
+    // Secondary + Acts kombinasyonları
+    &.acts-success {
+      border-color: $success-color;
+      color: $success-color;
+      &:hover:not(:disabled) {
+        background-color: rgba($success-color, 0.1);
+        border-color: color.adjust($success-color, $lightness: -5%);
+        color: color.adjust($success-color, $lightness: -5%);
+      }
+    }
+
+    &.acts-danger {
+      border-color: $danger-color;
+      color: $danger-color;
+      &:hover:not(:disabled) {
+        background-color: rgba($danger-color, 0.1);
+        border-color: color.adjust($danger-color, $lightness: -5%);
+        color: color.adjust($danger-color, $lightness: -5%);
+      }
+    }
+  }
+
+  &-tertiary {
+    background-color: transparent;
+    color: $primary-color;
+    padding: $size-2xs;
+    font-weight: $font-weight-regular;
+    &:hover:not(:disabled) { 
+      background-color: transparent;
+      color: $primary-hover;
+      font-weight: $font-weight-medium;
+    }
+    &:active:not(:disabled) {
+      color: $primary-active;
+      font-weight: $font-weight-semibold;
+    }
+
+    // Tertiary + Acts kombinasyonları
+    &.acts-success {
+      color: $success-color;
+      &:hover:not(:disabled) {
+        background-color: transparent;
+        color: $success-hover;
+        font-weight: $font-weight-medium;
+      }
+      &:active:not(:disabled) {
+        color: color.adjust($success-color, $lightness: -10%);
+        font-weight: $font-weight-semibold;
+      }
+    }
+
+    &.acts-danger {
+      color: $danger-color;
+      &:hover:not(:disabled) {
+        background-color: transparent;
+        color: $danger-hover;
+        font-weight: $font-weight-medium;
+      }
+      &:active:not(:disabled) {
+        color: color.adjust($danger-color, $lightness: -10%);
+        font-weight: $font-weight-semibold;
+      }
+    }
+  }
+
+  // Sizes
+  &.size-small {
+    padding: $size-4xs $size-xs;
+    font-size: $font-size-s;
+  }
+
+  &.size-large {
+    padding: $size-xs $size-l;
+    font-size: $font-size-l;
+  }
+
+  // States
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &.loading {
+    position: relative;
+    cursor: wait;
+    .rf-btn-content { opacity: 0; }
+    &::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border: 2px solid currentColor;
+      border-radius: 50%;
+      border-right-color: transparent;
+      animation: spin 0.75s linear infinite;
+    }
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

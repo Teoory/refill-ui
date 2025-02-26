@@ -1,0 +1,30 @@
+@use "sass:color";
+@use "variables" as *;
+@use "functions" as *;
+@forward 'variables';
+@forward 'functions';
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+body {
+  margin: 0;
+  font-family: $base-font;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Diğer global stiller buraya eklenebilir
+*, *::before, *::after {
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+// Eğer input, button gibi elementlerin varsayılan fontunu override etmek istiyorsak:
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+} 

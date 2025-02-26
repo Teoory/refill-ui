@@ -1,0 +1,102 @@
+@use "sass:color";
+
+// Font
+$base-font: "Rubik", serif;
+
+// Size Variables
+$size-4xs: .125rem;  // 2px
+$size-3xs: .25rem;   // 4px
+$size-2xs: .5rem;    // 8px
+$size-xs: .75rem;    // 12px
+$size-s: .875rem;    // 14px
+$size-m: 1rem;       // 16px
+$size-l: 1.25rem;    // 20px
+$size-xl: 1.5rem;    // 24px
+$size-2xl: 2rem;     // 32px
+$size-3xl: 2.5rem;   // 40px
+$size-4xl: 3rem;     // 48px
+$size-5xl: 4rem;     // 64px
+$size-6xl: 5rem;     // 80px
+
+// Font Weights
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Font Sizes
+$font-size-2xs: .5rem;    // 8px
+$font-size-xs: .625rem;   // 10px
+$font-size-s: .75rem;     // 12px
+$font-size-m: .875rem;    // 14px
+$font-size-l: 1rem;       // 16px
+$font-size-xl: 1.25rem;   // 20px
+$font-size-2xl: 1.5rem;   // 24px
+$font-size-3xl: 1.75rem;  // 28px
+$font-size-4xl: 2rem;     // 32px
+$font-size-5xl: 3rem;     // 48px
+$font-size-6xl: 4rem;     // 64px
+
+// Border Radius
+$border-radius-xs: .125rem;
+$border-radius-s: .25rem;
+$border-radius-m: .375rem;
+$border-radius-l: .5rem;
+$border-radius-pill: 62.438rem;
+$border-radius-circle: 50%;
+
+// Ana Renkler
+$primary-color: #00875A;
+$primary-dark: #006c48;
+$primary-darker: #002F25;
+$secondary-color: #f27a1a;
+$secondary-dark: #d86500;
+
+// Durum Renkleri
+$success-color: #0bc15c;
+$success-hover: #09a14d;
+$danger-color: #ff5043;
+$danger-hover: #ff3028;
+$warning-color: #f27a1a;
+$warning-hover: #d86500;
+$info-color: #006c48;
+$info-hover: #004d36;
+
+// Nötr Renkler
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+
+// Tema Renkleri
+$background-color: #ffffff;
+$text-color: $gray-900;
+$border-color: $gray-300;
+$border-color-light: $gray-200;
+$disabled-color: $gray-500;
+
+// Gölge ve Efektler
+$shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+$transition: 0.3s;
+
+// Diğer Ayarlar
+$border-radius: 4px;
+
+// Hover ve Active durumları için renk değişkenleri
+$primary-hover: color.adjust($primary-color, $lightness: -5%);
+$primary-active: color.adjust($primary-color, $lightness: -10%);
+$secondary-hover: color.adjust($secondary-color, $lightness: -5%);
+$secondary-active: color.adjust($secondary-color, $lightness: -10%);
+
+// Line Heights
+$line-height-tight: 1.25;
+$line-height-snug: 1.375;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.625;
+$line-height-loose: 2;
