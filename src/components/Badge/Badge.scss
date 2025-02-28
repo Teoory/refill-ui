@@ -1,0 +1,82 @@
+@use '@/styles/_index' as *;
+
+.rf-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: $font-weight-medium;
+  border-radius: $border-radius-m;
+  white-space: nowrap;
+  color: var(--badge-color, $primary-color);
+  
+  // Background color varsa
+  &.has-bg {
+    background-color: var(--badge-bg-color, rgba($primary-color, 0.1));
+  }
+
+  // Sizes
+  &.size-small {
+    padding: $size-2xs $size-xs;
+    font-size: $font-size-s;
+    height: 20px;
+    min-width: 20px;
+    border-radius: $border-radius-s;
+  }
+
+  &.size-medium {
+    padding: $size-xs $size-s;
+    font-size: $font-size-m;
+    height: 24px;
+    min-width: 24px;
+    border-radius: $border-radius-m;
+  }
+
+  &.size-large {
+    padding: $size-s $size-m;
+    font-size: $font-size-l;
+    height: 32px;
+    min-width: 32px;
+    border-radius: $border-radius-l;
+  }
+
+  // Acts (Hazır Durumlar)
+  &.acts-primary {
+    color: $primary-color;
+    background-color: rgba($primary-color, 0.1);
+  }
+
+  &.acts-secondary {
+    color: $secondary-color;
+    background-color: rgba($secondary-color, 0.1);
+  }
+
+  &.acts-success {
+    color: $success-color;
+    background-color: rgba($success-color, 0.1);
+  }
+
+  &.acts-danger {
+    color: $danger-color;
+    background-color: rgba($danger-color, 0.1);
+  }
+
+  &.acts-warning {
+    color: $warning-color;
+    background-color: rgba($warning-color, 0.1);
+  }
+
+  &.acts-info {
+    color: $info-color;
+    background-color: rgba($info-color, 0.1);
+  }
+
+  &.acts-light {
+    color: $gray-600;
+    background-color: rgba($gray-200, 0.5);
+  }
+
+  &.acts-dark {
+    color: $gray-900;
+    background-color: rgba($gray-800, 0.1);
+  }
+} 

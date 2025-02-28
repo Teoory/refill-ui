@@ -1,5 +1,4 @@
 import React from 'react';
-import RfIcon from '../Icon/Icon';
 import './Button.scss';
 
 const InfoIcon = () => (
@@ -20,22 +19,29 @@ const CloseIcon = () => (
   </svg>
 );
 
-const ArrowLeftIcon = () => ( 
-  <RfIcon icon="arrow-left" />
+const ArrowLeftIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+    <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
+  </svg>
 );
 
-const ArrowRightIcon = () => ( 
-  <RfIcon icon="arrow-right" />
+const ArrowRightIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+    <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/>
+  </svg>
 );
 
-const ArrowUpIcon = () => ( 
-  <RfIcon icon="arrow-up" />
+const ArrowUpIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+    <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z"/>
+  </svg>
 );
 
-const ArrowDownIcon = () => ( 
-  <RfIcon icon="arrow-down" />
+const ArrowDownIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
+    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
+  </svg>
 );
-
 
 const iconMap = {
   info: InfoIcon,
@@ -49,35 +55,55 @@ const iconMap = {
 
 const RfButton = ({
   variant = 'primary',
-  acts,
   size = 'medium',
   icon,
   label,
-  loading,
-  disabled,
+  loading = false,
+  disabled = false,
+  acts,
+  color,
   children,
+  className = '',
   href,
+  blank,
+  nolink,
   ...props
 }) => {
-  const baseClassName = 'rf-btn';
-  const classes = [
-    baseClassName,
-    `${baseClassName}-${variant}`,
-    size && `size-${size}`,
-    acts && `acts-${acts}`,
-    !children && icon && label && 'icon-only',
-    loading && 'loading'
-  ].filter(Boolean).join(' ');
+  const IconComponent = icon ? iconMap[icon] : null;
+  
+  const buttonStyle = color ? {
+    ...(variant === 'primary' && { 
+      backgroundColor: color 
+    }),
+    ...(variant === 'secondary' && { 
+      borderColor: color, 
+      color: color,
+      '--hover-bg': `${color}19`,
+      '--active-bg': `${color}33`
+    }),
+    ...(variant === 'tertiary' && { 
+      color: color 
+    })
+  } : undefined;
+  
+  const classes = `
+    rf-btn 
+    rf-btn-${variant} 
+    size-${size}
+    ${acts ? `acts-${acts}` : ''} 
+    ${loading ? 'loading' : ''} 
+    ${nolink ? 'nolink' : ''}
+    ${className}
+  `.trim();
 
-  const renderIcon = () => {
-    if (!icon) return null;
-    return <RfIcon icon={icon} />;
-  };
-
-  const renderContent = () => (
+  const content = (
     <>
-      {renderIcon()}
-      {children && <span className="rf-btn-content">{children}</span>}
+      {IconComponent && (
+        <span className="rf-btn-icon">
+          <IconComponent />
+        </span>
+      )}
+      {!label && <span className="rf-btn-content">{children}</span>}
     </>
   );
 
@@ -86,10 +112,13 @@ const RfButton = ({
       <a 
         href={href}
         className={classes}
+        style={buttonStyle}
         disabled={disabled || loading}
+        target={blank ? '_blank' : undefined}
+        rel={blank ? 'noopener noreferrer' : undefined}
         {...props}
       >
-        {renderContent()}
+        {content}
       </a>
     );
   }
@@ -97,10 +126,11 @@ const RfButton = ({
   return (
     <button 
       className={classes}
+      style={buttonStyle}
       disabled={disabled || loading}
       {...props}
     >
-      {renderContent()}
+      {content}
     </button>
   );
 };
@@ -111,7 +141,7 @@ const customElements = window?.customElements;
 if (customElements && !customElements.get('rf-button')) {
   class RfButtonElement extends HTMLElement {
     static get observedAttributes() {
-      return ['variant', 'acts', 'size', 'icon', 'label', 'loading', 'disabled', 'href'];
+      return ['variant', 'size', 'icon', 'label', 'loading', 'disabled', 'href', 'blank', 'acts', 'nolink'];
     }
 
     connectedCallback() {
@@ -137,38 +167,59 @@ if (customElements && !customElements.get('rf-button')) {
 
     render() {
       const variant = this.getAttribute('variant') || 'primary';
-      const acts = this.getAttribute('acts');
       const size = this.getAttribute('size') || 'medium';
       const icon = this.getAttribute('icon');
-      const label = this.getAttribute('label');
+      const label = this.hasAttribute('label');
       const loading = this.hasAttribute('loading');
       const disabled = this.hasAttribute('disabled');
       const href = this.getAttribute('href');
+      const blank = this.hasAttribute('blank');
+      const acts = this.getAttribute('acts');
+      const nolink = this.hasAttribute('nolink');
+      const color = this.getAttribute('color');
+      
+      const classes = `
+        rf-btn 
+        rf-btn-${variant} 
+        size-${size}
+        ${acts ? `acts-${acts}` : ''}
+        ${loading ? 'loading' : ''}
+        ${nolink ? 'nolink' : ''}
+      `.trim();
 
-      const classes = [
-        'rf-btn',
-        `rf-btn-${variant}`,
-        size && `size-${size}`,
-        acts && `acts-${acts}`,
-        !this.textContent && icon && label && 'icon-only',
-        loading && 'loading'
-      ].filter(Boolean).join(' ');
+      const style = color ? `style="${
+        variant === 'primary' ? 
+          `background-color: ${color};` :
+        variant === 'secondary' ? 
+          `border-color: ${color}; color: ${color}; ` +
+          `--hover-bg: ${color}19; ` +
+          `--active-bg: ${color}33;` :
+        variant === 'tertiary' ? 
+          `color: ${color};` : 
+        ''
+      }"` : '';
 
       const iconHtml = icon ? `<span class="rf-btn-icon">${this.getIconSvg(icon)}</span>` : '';
       const content = `
         ${iconHtml}
-        ${this.textContent ? `<span class="rf-btn-content">${this.textContent}</span>` : ''}
+        ${!label ? `<span class="rf-btn-content">${this.textContent}</span>` : ''}
       `;
 
       if (href) {
         this.innerHTML = `
-          <a href="${href}" class="${classes}" ${disabled ? 'disabled' : ''}>
+          <a 
+            href="${href}" 
+            class="${classes}" 
+            ${disabled ? 'disabled' : ''}
+            ${blank ? 'target="_blank" rel="noopener noreferrer"' : ''}
+            ${style}
+          >
             ${content}
           </a>
         `;
       } else {
         this.innerHTML = `
-          <button class="${classes}" ${disabled ? 'disabled' : ''}>
+          <button class="${classes}" ${disabled ? 'disabled' : ''} ${style}>
             ${content}
           </button>
         `;

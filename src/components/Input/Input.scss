@@ -1,0 +1,306 @@
+@use '@/styles/_index' as *;
+@use "sass:color";
+
+.rf-input-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: $size-2xs;
+  width: 100%;
+}
+
+.rf-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 1px solid $gray-300;
+  border-radius: $border-radius-m;
+  background-color: white;
+  transition: all 0.2s ease;
+
+  &:hover:not(.disabled) {
+    border-color: $gray-400;
+  }
+
+  &[style*="--input-color"]:not(.disabled) {
+    &:hover {
+      border-color: var(--input-color);
+    }
+
+    &.focused,
+    &.has-value {
+      border-color: var(--input-color);
+      box-shadow: 0 0 0 2px var(--input-shadow);
+
+      .rf-input-label {
+        color: var(--input-color);
+      }
+    }
+  }
+
+  &.focused:not(.disabled),
+  &.has-value:not(.disabled) {
+    border-color: $primary-color;
+    box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+  }
+
+  &.required:not(.has-value):not(.focused) {
+    border-color: $danger-color;
+
+    .rf-input-label {
+      color: $danger-color;
+    }
+
+    &:hover:not(.disabled) {
+      border-color: color.adjust($danger-color, $lightness: -10%);
+    }
+
+    &[style*="--input-color"] {
+      border-color: $danger-color !important;
+      box-shadow: none !important;
+
+      .rf-input-label {
+        color: $danger-color !important;
+      }
+    }
+  }
+
+  &.required.has-value:not(.disabled) {
+    border-color: $success-color;
+    box-shadow: 0 0 0 2px rgba($success-color, 0.2);
+
+    .rf-input-label {
+      color: $success-color;
+    }
+
+    &[style*="--input-color"] {
+      border-color: $success-color !important;
+      box-shadow: 0 0 0 2px rgba($success-color, 0.2) !important;
+
+      .rf-input-label {
+        color: $success-color !important;
+      }
+    }
+  }
+
+  // Normal floating label styles
+  &:not(.fixed-label) {
+    .rf-input-label {
+      position: absolute;
+      left: $size-s;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: white;
+      padding: 0 $size-2xs;
+      transition: all 0.2s ease;
+      pointer-events: none;
+      z-index: 1;
+      color: $gray-500;
+      opacity: 0;
+    }
+
+    &.focused .rf-input-label,
+    &.has-value .rf-input-label {
+      top: -1px;
+      transform: translateY(-50%) scale(0.85);
+      color: $primary-color;
+      font-weight: $font-weight-medium;
+      opacity: 1;
+    }
+  }
+
+  // Fixed label styles (her zaman görünür)
+  &.fixed-label {
+    .rf-input-label {
+      position: absolute;
+      top: -1px;
+      left: $size-s;
+      transform: translateY(-50%) scale(0.85);
+      background-color: white;
+      padding: 0 $size-2xs;
+      color: $primary-color;
+      font-weight: $font-weight-medium;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    &.focused .rf-input-label {
+      color: $primary-color;
+    }
+  }
+
+  &.disabled {
+    background-color: $gray-100;
+    cursor: not-allowed;
+
+    .rf-input {
+      cursor: not-allowed;
+    }
+  }
+
+  // Sizes
+  &.size-small {
+    height: 32px;
+    width: 240px;
+    
+    .rf-input {
+      font-size: $font-size-s;
+      padding: $size-2xs $size-xs;
+    }
+
+    .rf-input-icon {
+      padding: 0 $size-xs;
+      
+      svg {
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+
+  &.size-medium {
+    height: 40px;
+    width: 320px;
+
+    .rf-input {
+      font-size: $font-size-m;
+      padding: $size-2xs $size-s;
+    }
+
+    .rf-input-icon {
+      padding: 0 $size-s;
+      
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+
+  &.size-large {
+    height: 48px;
+    width: 400px;
+
+    .rf-input {
+      font-size: $font-size-l;
+      padding: $size-xs $size-m;
+    }
+
+    .rf-input-icon {
+      padding: 0 $size-m;
+      
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  // Full width seçeneği
+  &.size-full {
+    height: 40px;
+    width: 100%;
+
+    .rf-input {
+      font-size: $font-size-m;
+      padding: $size-2xs $size-s;
+    }
+
+    .rf-input-icon {
+      padding: 0 $size-s;
+      
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+
+  // İkon konumlandırma stilleri
+  &.icon-left {
+    .rf-input {
+      padding: 0 $size-s;
+    }
+    
+    .rf-input-icon {
+      order: -1;
+      padding: 0 $size-s;
+    }
+  }
+
+  &.icon-right {
+    .rf-input {
+      padding-right: 0;
+    }
+    
+    .rf-input-icon {
+      order: 1;
+      padding: 0 $size-s;
+    }
+  }
+}
+
+.rf-input {
+  flex: 1;
+  border: none;
+  background: none;
+  outline: none;
+  width: 100%;
+  color: $gray-900;
+  padding: $size-xs $size-s;
+
+  &::placeholder {
+    color: $gray-500;
+  }
+
+  &:disabled {
+    color: $gray-600;
+    background: none;
+  }
+}
+
+.rf-input-icon {
+  display: flex;
+  align-items: center;
+  color: $gray-500;
+}
+
+.rf-input-password-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $size-2xs $size-xs;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: $gray-500;
+  
+  &:hover {
+    color: $gray-700;
+  }
+}
+
+.rf-input-help {
+  font-size: $font-size-s;
+  color: $gray-600;
+  margin: 0;
+}
+
+// Has Icon modifiers
+.has-icon {
+  .rf-input {
+    padding-left: 0;
+  }
+}
+
+.rf-input-label {
+  font-size: $font-size-m;
+  font-weight: $font-weight-medium;
+  color: $gray-800;
+
+  .required {
+    color: $danger-color;
+    margin-left: $size-3xs;
+  }
+} 

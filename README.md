@@ -1,140 +1,77 @@
 # Refill UI
 
+![npm version](https://img.shields.io/npm/v/refill-ui?style=flat-square)
+![license](https://img.shields.io/npm/l/refill-ui?style=flat-square)
+![downloads](https://img.shields.io/npm/dt/refill-ui?style=flat-square)
+![jsdelivr](https://data.jsdelivr.com/v1/package/npm/refill-ui/badge)
+![stars](https://img.shields.io/github/stars/Teoory/refill-ui?style=flat-square)
+![issues](https://img.shields.io/github/issues/Teoory/refill-ui?style=flat-square)
+![contributors](https://img.shields.io/github/contributors/Teoory/refill-ui?style=flat-square)
+![commit activity](https://img.shields.io/github/commit-activity/m/Teoory/refill-ui?style=flat-square)
+![commit activity weekly](https://img.shields.io/github/commit-activity/w/Teoory/refill-ui?style=flat-square)
+![commit activity yearly](https://img.shields.io/github/commit-activity/y/Teoory/refill-ui?style=flat-square)
+
+
+
+## Refill UI
+
 Modern, özelleştirilebilir React UI bileşenleri kütüphanesi. Web Components desteği ile birlikte gelir.
 
-## Iconlar
-```jsx
-<RfButton icon="info">With Icon</RfButton>
-<RfButton icon="check">With Icon</RfButton>
-<RfButton icon="close">With Icon</RfButton>
-<RfButton icon="arrow-left">With Icon</RfButton>
-<RfButton icon="arrow-right">With Icon</RfButton>
-<RfButton icon="arrow-up">With Icon</RfButton>
-<RfButton icon="arrow-down">With Icon</RfButton>
-```
+### Bağlantılar
 
+- [NPM Package](https://www.npmjs.com/package/refill-ui)
+- [GitHub Repository](https://github.com/Teoory/refill-ui)
+- [Discord](https://discord.gg/8pT6yjhuMt)
+- [Docs](https://refill-ui-docs.vercel.app/)
 
+## Hızlı Başlangıç
 
+### Kurulum
 
-## Kurulum
-
-```bash
+```sh
 npm install refill-ui
 ```
 
-## Kullanım
-
-### React ile kullanım
+### Kullanım
 
 ```jsx
-import { RfButton, RfIcon } from 'refill-ui';
+import { RfButton, RfIcon, RfBadge, RfInput, RfAlert } from 'refill-ui';
 import 'refill-ui/style';
 
 function App() {
   return (
     <div>
-      {/* Temel Kullanım */}
+      <RfButton>Hello World</RfButton>
       <RfIcon icon="info" size={24} />
-      <RfButton>Primary Button</RfButton>
-      <RfButton variant="secondary">Secondary Button</RfButton>
-      <RfButton variant="tertiary">Tertiary Button</RfButton>
-
-      {/* Acts Özelliği */}
-      <RfButton acts="success">Success Button</RfButton>
-      <RfButton acts="danger">Danger Button</RfButton>
-
-      {/* Icon Kullanımı */}
-      <RfButton icon="info">With Icon</RfButton>
-      <RfButton variant="tertiary" icon="info">Tertiary with Icon</RfButton>
-      <RfButton acts="danger" icon="info">Danger with Icon</RfButton>
-
-      {/* Sadece Icon */}
-      <RfButton icon="info" label="active" />
-      <RfButton acts="danger" icon="info" label="active" />
-
-      {/* Boyut Çeşitleri */}
-      <RfButton size="small">Small Button</RfButton>
-      <RfButton size="medium">Medium Button</RfButton>
-      <RfButton size="large">Large Button</RfButton>
-
-      {/* Loading Durumu */}
-      <RfButton loading>Loading Button</RfButton>
-      <RfButton icon="info" size="small" loading>Loading</RfButton>
-
-      {/* Disabled Durumu */}
-      <RfButton disabled>Disabled Button</RfButton>
-
-      {/* Link Olarak Kullanım */}
-      <RfButton href="#" variant="tertiary">Link Button</RfButton>
+      <RfBadge color="red" size="small">
+        Badge
+      </RfBadge>
+      <RfInput label="Name" placeholder="Enter Your Name" />
+      <RfAlert color="success" title="Success" description="This is a success alert" />
     </div>
   );
 }
 ```
 
-### HTML ile Kullanım (Web Components)
-
 ```html
-<!-- Temel Kullanım -->
-<rf-icon icon="info" size="24"></rf-icon>
-<rf-button>Primary Button</rf-button>
-<rf-button variant="secondary">Secondary Button</rf-button>
-<rf-button variant="tertiary">Tertiary Button</rf-button>
+<script src="https://cdn.jsdelivr.net/npm/refill-ui@latest/dist/refill-ui.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/refill-ui@latest/dist/refill-ui.min.css">
 
-<!-- Acts Özelliği -->
-<rf-button acts="success">Success Button</rf-button>
-<rf-button acts="danger">Danger Button</rf-button>
-
-<!-- Icon Kullanımı -->
-<rf-button icon="info">With Icon</rf-button>
-<rf-button variant="tertiary" icon="info">Tertiary with Icon</rf-button>
-<rf-button acts="danger" icon="info">Danger with Icon</rf-button>
-
-<!-- Sadece Icon -->
-<rf-button icon="info" label="active"></rf-button>
-<rf-button acts="danger" icon="info" label="active"></rf-button>
-
-<!-- Boyut Çeşitleri -->
-<rf-button size="small">Small Button</rf-button>
-<rf-button size="medium">Medium Button</rf-button>
-<rf-button size="large">Large Button</rf-button>
-
-<!-- Loading Durumu -->
-<rf-button loading>Loading Button</rf-button>
-<rf-button icon="info" size="small" loading>Loading</rf-button>
-
-<!-- Disabled Durumu -->
-<rf-button disabled>Disabled Button</rf-button>
-
-<!-- Link Olarak Kullanım -->
-<rf-button href="#" variant="tertiary">Link Button</rf-button>
+<refill-button>Hello World</refill-button>
+<refill-icon icon="info" size="24"></refill-icon>
+<refill-badge color="red" size="small">Badge</refill-badge>
+<refill-input label="Name" placeholder="Enter Your Name"></refill-input>
+<refill-alert color="success" title="Success" description="This is a success alert"></refill-alert>
 ```
 
-## Button Özellikleri
+## Özellikler
 
-| Özellik  | Tip      | Varsayılan | Açıklama                                    |
-|----------|----------|------------|---------------------------------------------|
-| variant  | string   | 'primary'  | 'primary', 'secondary', 'tertiary'          |
-| acts     | string   | -          | 'success', 'danger'                         |
-| size     | string   | 'medium'   | 'small', 'medium', 'large'                 |
-| icon     | string   | -          | Icon adı                                    |
-| label    | boolean  | -          | Sadece icon gösterimi için                  |
-| loading  | boolean  | false      | Loading durumu                              |
-| disabled | boolean  | false      | Disabled durumu                             |
-| href     | string   | -          | Link olarak kullanım için                   |
+✅ **Modern Tasarım** - Güncel tasarım trendlerine uygun, modern ve şık komponentler.
 
-## Geliştirme
+✅ **Web Components** - Framework bağımsız kullanım için Web Components desteği.
 
-```bash
-# Bağımlılıkları yükle
-npm install
+✅ **Özelleştirilebilir** - SCSS değişkenleri ile kolay özelleştirme imkanı.
 
-# Geliştirme sunucusunu başlat
-npm run dev
+✅ **TypeScript Desteği** - Tam TypeScript desteği ile tip güvenliği.
 
-# Üretime hazır paket oluştur
-npm run build
-```
-
-## Lisans
-
-MIT
+Daha fazla bilgi için [dokümantasyona göz atın](https://refill-ui-docs.vercel.app/).

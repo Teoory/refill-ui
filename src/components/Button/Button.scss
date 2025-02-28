@@ -1,12 +1,19 @@
 @use '@/styles/_index' as *;
 @use "sass:color";
 
+.rf-btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .rf-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: $size-2xs;
   padding: $size-2xs $size-xs;
+  height: 100%;
   border: none;
   border-radius: $border-radius-m;
   font-size: $font-size-m;
@@ -16,29 +23,53 @@
   cursor: pointer;
   transition: all 0.2s ease;
   
+  // İçerik düzenlemesi
+  .rf-btn-content {
+    display: inline-flex;
+    align-items: center;
+    gap: inherit; // Üst elementteki gap değerini kullanır
+  }
+
+  // İkon düzenlemesi
+  .rf-icon {
+    display: inline-flex;
+    align-items: center;
+  }
+
   // Variants
   &-primary, &:not([class*="rf-btn-"]) {
     background-color: $primary-color;
     color: white;
+    
     &:hover:not(:disabled) { 
-      background-color: $primary-hover;
+      filter: brightness(0.95);
     }
     &:active:not(:disabled) {
-      background-color: $primary-active;
+      filter: brightness(0.9);
+    }
+
+    // Custom color kullanıldığında hover/active durumları
+    &[style*="background-color"] {
+      &:hover:not(:disabled) {
+        filter: brightness(0.95);
+      }
+      &:active:not(:disabled) {
+        filter: brightness(0.9);
+      }
     }
 
     // Primary Acts
     &.acts-success {
       background-color: $success-color;
       &:hover:not(:disabled) { 
-        background-color: color.adjust($success-color, $lightness: -5%);
+        filter: brightness(0.95);
       }
     }
 
     &.acts-danger {
       background-color: $danger-color;
       &:hover:not(:disabled) { 
-        background-color: color.adjust($danger-color, $lightness: -5%);
+        filter: brightness(0.95);
       }
     }
   }
@@ -47,15 +78,22 @@
     background-color: transparent;
     border: 1px solid $primary-color;
     color: $primary-color;
+    
     &:hover:not(:disabled) { 
       background-color: rgba($primary-color, 0.1);
-      border-color: $primary-hover;
-      color: $primary-hover;
     }
     &:active:not(:disabled) {
       background-color: rgba($primary-color, 0.2);
-      border-color: $primary-active;
-      color: $primary-active;
+    }
+
+    // Custom color kullanıldığında hover/active durumları
+    &[style*="color"] {
+      &:hover:not(:disabled) {
+        background-color: var(--hover-bg);
+      }
+      &:active:not(:disabled) {
+        background-color: var(--active-bg);
+      }
     }
 
     // Secondary + Acts kombinasyonları
@@ -64,8 +102,7 @@
       color: $success-color;
       &:hover:not(:disabled) {
         background-color: rgba($success-color, 0.1);
-        border-color: color.adjust($success-color, $lightness: -5%);
-        color: color.adjust($success-color, $lightness: -5%);
+        filter: brightness(0.95);
       }
     }
 
@@ -74,8 +111,7 @@
       color: $danger-color;
       &:hover:not(:disabled) {
         background-color: rgba($danger-color, 0.1);
-        border-color: color.adjust($danger-color, $lightness: -5%);
-        color: color.adjust($danger-color, $lightness: -5%);
+        filter: brightness(0.95);
       }
     }
   }
@@ -85,14 +121,24 @@
     color: $primary-color;
     padding: $size-2xs;
     font-weight: $font-weight-regular;
+    
     &:hover:not(:disabled) { 
-      background-color: transparent;
-      color: $primary-hover;
+      filter: brightness(0.9);
       font-weight: $font-weight-medium;
     }
     &:active:not(:disabled) {
-      color: $primary-active;
+      filter: brightness(0.8);
       font-weight: $font-weight-semibold;
+    }
+
+    // Custom color kullanıldığında hover/active durumları
+    &[style*="color"] {
+      &:hover:not(:disabled) {
+        filter: brightness(0.9);
+      }
+      &:active:not(:disabled) {
+        filter: brightness(0.8);
+      }
     }
 
     // Tertiary + Acts kombinasyonları
@@ -125,13 +171,42 @@
 
   // Sizes
   &.size-small {
-    padding: $size-4xs $size-xs;
+    height: 32px;
+    min-height: unset;
+    padding: $size-3xs $size-xs;
     font-size: $font-size-s;
+    gap: $size-3xs;
+
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  &:not([class*="size-"]), &.size-medium {
+    height: 40px;
+    min-height: unset;
+    padding: $size-2xs $size-s;
+    font-size: $font-size-m;
+    gap: $size-2xs;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
   }
 
   &.size-large {
-    padding: $size-xs $size-l;
+    height: 48px;
+    min-height: unset;
+    padding: $size-xs $size-m;
     font-size: $font-size-l;
+    gap: $size-xs;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
   }
 
   // States
@@ -153,6 +228,15 @@
       border-radius: 50%;
       border-right-color: transparent;
       animation: spin 0.75s linear infinite;
+    }
+  }
+
+  // Link butonları için text-decoration kontrolü
+  &[href] {
+    text-decoration: underline;
+    
+    &.nolink {
+      text-decoration: none;
     }
   }
 }

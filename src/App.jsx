@@ -1,10 +1,17 @@
 import React from 'react';
-import { RfButton } from 'refill-ui';
+import { RfButton, RfIcon } from 'refill-ui';
 import 'refill-ui/style';
 
 function App() {
   return (
     <div className="container">
+
+      <div>
+        <RfIcon icon="info"/>
+        <RfIcon icon="eye"/>        
+      </div>
+
+      
       <h1>Refill UI Button Examples</h1>
       
       <div>

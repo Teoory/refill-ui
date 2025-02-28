@@ -1,0 +1,193 @@
+@use '@/styles/_index' as *;
+
+.rf-alert {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: $size-xs;
+  border: 1px solid;
+  border-radius: $border-radius-m;
+  
+  // Default styles
+  color: var(--alert-color, $info-color);
+  background-color: var(--alert-bg-color, rgba($info-color, 0.1));
+  border-color: var(--alert-border-color, rgba($info-color, 0.2));
+
+  // Icon styles
+  .rf-alert-icon {
+    flex-shrink: 0;
+    order: 0;
+  }
+
+  // Content styles
+  .rf-alert-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: $size-s;
+    padding-right: $size-xl;
+  }
+
+  // Text container styles
+  .rf-alert-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: $size-3xs;
+    order: 1;
+  }
+
+  // Label styles
+  .rf-alert-label {
+    font-weight: $font-weight-medium;
+  }
+
+  // Help text styles
+  .rf-alert-help {
+    font-size: $font-size-s;
+    color: $gray-600;
+  }
+
+  // Actions container styles
+  .rf-alert-actions {
+    display: flex;
+    gap: $size-xs;
+    align-items: center;
+  }
+
+  // Close button styles
+  .rf-alert-close {
+    position: absolute;
+    top: 50%;
+    right: $size-xs;
+    transform: translateY(-50%);
+    padding: $size-2xs;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: currentColor;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  // Size variants
+  &.size-small {
+    height: 32px;
+    padding: 0 $size-s;
+    font-size: $font-size-s;
+
+    &.has-buttons,
+    &:has(.rf-alert-help) {
+      height: 48px;
+    }
+
+    .rf-alert-help {
+      font-size: $font-size-xs;
+    }
+
+    .rf-alert-close {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &.size-medium {
+    height: 40px;
+    padding: 0 $size-m;
+    font-size: $font-size-m;
+
+    &.has-buttons,
+    &:has(.rf-alert-help) {
+      height: 56px;
+    }
+
+    .rf-alert-help {
+      font-size: $font-size-s;
+    }
+
+    .rf-alert-close {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &.size-large {
+    height: 48px;
+    padding: 0 $size-l;
+    font-size: $font-size-l;
+
+    &.has-buttons,
+    &:has(.rf-alert-help) {
+      height: 64px;
+    }
+
+    .rf-alert-help {
+      font-size: $font-size-m;
+    }
+
+    .rf-alert-close {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  &.size-full {
+    width: 100%;
+    height: 48px;
+    padding: 0 $size-l;
+    font-size: $font-size-l;
+
+    .rf-alert-close {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  // Acts variants
+  &.acts-info {
+    color: $info-color;
+    background-color: rgba($info-color, 0.1);
+    border-color: rgba($info-color, 0.2);
+  }
+
+  &.acts-warning {
+    color: $warning-color;
+    background-color: rgba($warning-color, 0.1);
+    border-color: rgba($warning-color, 0.2);
+  }
+
+  &.acts-success {
+    color: $success-color;
+    background-color: rgba($success-color, 0.1);
+    border-color: rgba($success-color, 0.2);
+  }
+
+  &.acts-danger {
+    color: $danger-color;
+    background-color: rgba($danger-color, 0.1);
+    border-color: rgba($danger-color, 0.2);
+  }
+
+  // Reverse styles
+  &.reverse {
+    .rf-alert-icon {
+      order: 2;
+    }
+
+    .rf-alert-text {
+      order: 0;
+    }
+
+    .rf-alert-actions {
+      order: 1;
+    }
+  }
+} 
