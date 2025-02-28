@@ -35,7 +35,7 @@ npm install refill-ui
 ### Kullanım
 
 ```jsx
-import { RfButton, RfIcon, RfBadge, RfInput, RfAlert } from 'refill-ui';
+import { RfButton, RfIcon, RfBadge, RfInput, RfAlert, RfDropdown, RfDropdownItem } from 'refill-ui';
 import 'refill-ui/style';
 
 function App() {
@@ -48,6 +48,10 @@ function App() {
       </RfBadge>
       <RfInput label="Name" placeholder="Enter Your Name" />
       <RfAlert color="success" title="Success" description="This is a success alert" />
+      <RfDropdown header="Dropdown Button">
+        <RfDropdownItem>Action 1</RfDropdownItem>
+        <RfDropdownItem>Action 2</RfDropdownItem>
+      </RfDropdown>
     </div>
   );
 }
